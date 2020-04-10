@@ -30,7 +30,7 @@ def main():
 	dp.add_handler(CommandHandler('help', 			commands.help ), 1)
 	dp.add_handler(CommandHandler('showdeadlines', commands.show_deadlines), 1)
 
-	dp.add_handler(MessageHandler(Filters.text & ~Filters.command, messages.unknown))
+	dp.add_handler(MessageHandler(Filters.text & ~Filters.command & ~Filters.document.mime_type("application/pdf"), messages.unknown))
 	dp.add_handler(MessageHandler(Filters.document.mime_type("application/pdf"), messages.save))
 
 	dp.add_error_handler(error)
