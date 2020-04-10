@@ -17,11 +17,14 @@ def error(bot, update):
 
 # logs for LaBot
 # Enable logging to handle uncaught exceptions
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 					level=logging.INFO,
 					filename='LaBot.log')
 logger = logging.getLogger(__name__)
-
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+logger.addHandler(ch)
 
 def main():
 	updater = Updater(token=TOKEN)
