@@ -21,17 +21,17 @@ def save(bot, update):
 		# parse number and allocate in the necessary directory
 		lab_number = int(name[name.rfind('_') + 1 : name.rfind('.')])
 		if lab_number == 7:
-			new_path = '/Users/ba/Documents/LaBot/labs/lab_7/' + update.message.document.file_name
+			new_path = '~/LaBot/labs/lab_7/' + update.message.document.file_name
 		elif lab_number == 8:
-			new_path = '/Users/ba/Documents/LaBot/labs/lab_8/' + update.message.document.file_name			
+			new_path = '~/LaBot/labs/lab_8/' + update.message.document.file_name			
 		elif lab_number == 9:
-			new_path = '/Users/ba/Documents/LaBot/labs/lab_9/' + update.message.document.file_name			
+			new_path = '~/LaBot/labs/lab_9/' + update.message.document.file_name			
 		elif lab_number == 10:
-			new_path = '/Users/ba/Documents/LaBot/labs/lab_10/' + update.message.document.file_name			
+			new_path = '~/LaBot/labs/lab_10/' + update.message.document.file_name			
 		elif lab_number == 11:
-			new_path = '/Users/ba/Documents/LaBot/labs/lab_11/' + update.message.document.file_name			
+			new_path = '~/LaBot/labs/lab_11/' + update.message.document.file_name			
 		elif lab_number == 12:
-			new_path = '/Users/ba/Documents/LaBot/labs/lab_12/' + update.message.document.file_name
+			new_path = '~/LaBot/labs/lab_12/' + update.message.document.file_name
 		else:
 			bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.unsaved_text, parse_mode='Markdown')
 		file.download(new_path)
