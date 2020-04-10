@@ -21,7 +21,7 @@ def save(bot, update):
 		# parse number and allocate in the necessary directory
 		lab_number = int(name[name.rfind('_') + 1 : name.rfind('.')])
 		if lab_number == 7:
-			new_path = '/Users/ba/Documents/LaBot/labs//lab_7/' + update.message.document.file_name
+			new_path = '/Users/ba/Documents/LaBot/labs/lab_7/' + update.message.document.file_name
 		elif lab_number == 8:
 			new_path = '/Users/ba/Documents/LaBot/labs/lab_8/' + update.message.document.file_name			
 		elif lab_number == 9:
@@ -35,7 +35,7 @@ def save(bot, update):
 		else:
 			bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.unsaved_text, parse_mode='Markdown')
 		file.download(new_path)
-		bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.save_text)
+		bot.send_message(chat_id=update.message.chat_id, text='Файл ' + '<*' + name + '*>' + text_for_LaBot.save_text, parse_mode='Markdown')
 
 	except:
 		bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.unsaved_text, parse_mode='Markdown')

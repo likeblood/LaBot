@@ -1,11 +1,11 @@
 def check_format(name: str) -> bool:
 	try:
-		# check text format
+		# check text and file format
 		if  name.rfind('_') == -1 or\
 			name.rfind('.') == -1 or\
 			name.rfind(' ') != -1 or\
 			(name[name.rfind('_') + 1 : name.rfind('.')]).isalpha() or\
-			name[len(name) - 3: len(name)] != 'pdf':
+			not(len(name[len(name) - 3: len(name)])):
 			return False
 		else:
 			name = name.strip()

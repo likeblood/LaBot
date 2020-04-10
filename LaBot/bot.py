@@ -7,6 +7,7 @@ from telegram.ext import Filters
 
 import commands
 import messages
+import customFilters
 
 from settings import TOKEN
 
@@ -28,10 +29,13 @@ def main():
 
 	dp.add_handler(CommandHandler('start', 			commands.start), 1)
 	dp.add_handler(CommandHandler('help', 			commands.help ), 1)
-	dp.add_handler(CommandHandler('showdeadlines', commands.show_deadlines), 1)
+	dp.add_handler(CommandHandler('showdeadlines',  commands.show_deadlines), 1)
 
-	dp.add_handler(MessageHandler(Filters.text & ~Filters.command & ~Filters.document.mime_type("application/pdf"), messages.unknown))
-	dp.add_handler(MessageHandler(Filters.document.mime_type("application/pdf"), messages.save))
+	dp.add_handler(MessageHandler(customFilters.unknown_files, 	messages.unknown))
+	dp.add_handler(MessageHandler(  customFilters.LaBot_files, 	messages.save))
+
+
+
 
 	dp.add_error_handler(error)
 
