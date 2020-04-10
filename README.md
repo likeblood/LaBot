@@ -14,4 +14,4 @@ It is plannig to scale and develop this bot with several functions:
 
 ## To-Do
  - [ ] Add integration with Dropbox
- + [] Add setup file
+ + [ ] Add setup file
