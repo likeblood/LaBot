@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Compiled source #
 *.com
 *.class
@@ -26,6 +27,8 @@
 # Settings
 settings.py
 =======
+=======
+>>>>>>> f61f08e1f0f6bf4ae1c9a5db0a3cba078774ace8
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -165,4 +168,7 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+<<<<<<< HEAD
+>>>>>>> f61f08e1f0f6bf4ae1c9a5db0a3cba078774ace8
+=======
 >>>>>>> f61f08e1f0f6bf4ae1c9a5db0a3cba078774ace8

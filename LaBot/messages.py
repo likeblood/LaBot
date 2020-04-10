@@ -22,6 +22,7 @@ def unknown(bot, update):
 @run_async
 def save(bot, update):
 <<<<<<< HEAD
+<<<<<<< HEAD
 	file_id = update.message.document.file_id
 	file = bot.get_file(file_id)
 	try:
@@ -51,6 +52,8 @@ def save(bot, update):
 	except:
 		bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.unsaved_text, parse_mode='Markdown')
 =======
+=======
+>>>>>>> f61f08e1f0f6bf4ae1c9a5db0a3cba078774ace8
     file_id = update.message.document.file_id
     file = bot.get_file(file_id)
     try:
@@ -85,4 +88,7 @@ def save(bot, update):
     except Exception:
         bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.sth_wrong, parse_mode='Markdown')
         logger.error('Something wrong', exc_info=True)
+<<<<<<< HEAD
+>>>>>>> f61f08e1f0f6bf4ae1c9a5db0a3cba078774ace8
+=======
 >>>>>>> f61f08e1f0f6bf4ae1c9a5db0a3cba078774ace8
