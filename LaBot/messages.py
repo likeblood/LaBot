@@ -22,11 +22,11 @@ def save(bot, update):
     file_id = update.message.document.file_id
     file = bot.get_file(file_id)
     try:
-		name = update.message.document.file_name
-		logger.info(f"Recieved file {name} from chat {update.message.chat_id}")
+        name = update.message.document.file_name
+        logger.info(f"Recieved file {name} from chat {update.message.chat_id}")
         if not (pars_check.check_format(name)):
             bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.unsaved_text, parse_mode='Markdown')
-			return None
+            return None
 
         # parse number and allocate in the necessary directory
         lab_number = int(name[name.rfind('_') + 1: name.rfind('.')])
@@ -51,5 +51,5 @@ def save(bot, update):
                          parse_mode='Markdown')
 
     except Exception:
-		bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.sth_wrong, parse_mode='Markdown')
+        bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.sth_wrong, parse_mode='Markdown')
         logger.error('Something wrong', exc_info=True)
