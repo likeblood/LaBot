@@ -21,10 +21,7 @@ def error(bot, update):
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 					level=logging.INFO,
 					filename='LaBot.log')
-logger = logging.getLogger(__name__)
-ch = logging.StreamHandler()
-ch.setLevel(logging.INFO)
-logger.addHandler(ch)
+
 
 def main():
 	updater = Updater(token=TOKEN)
@@ -36,9 +33,6 @@ def main():
 
 	dp.add_handler(MessageHandler(customFilters.unknown_files, 	messages.unknown))
 	dp.add_handler(MessageHandler(  customFilters.LaBot_files, 	messages.save))
-
-
-
 
 	dp.add_error_handler(error)
 
