@@ -1,3 +1,7 @@
+#
+#	NOW there is no need to use database
+#
+
 from datetime import datetime
 import logging
 
@@ -19,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 client = MongoClient(MONGO_LNK)
 db = client.labs
-db.lab1.save("/Users/ba/Documents/2_year_study/C++/labs/LAB№3/Lab_1.pdf")
+
 
 # users_collection = db.users_collection
 # print('users collections are created!')

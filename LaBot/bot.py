@@ -14,7 +14,8 @@ from settings import TOKEN
 def error(bot, update):
     logger.warning('Update "%s" caused error "%s"', update, bot.error)
 
-
+# logs for LaBot
+# Enable logging to handle uncaught exceptions
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 					level=logging.INFO,
 					filename='LaBot.log')
@@ -22,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-	updater = Updater(token='1241247575:AAF_4zWZ9PAwDzXEMXBR1UpZqIu-apaNee4')
+	updater = Updater(token=TOKEN)
 	dp = updater.dispatcher
 
 	dp.add_handler(CommandHandler('start', 			commands.start), 1)
