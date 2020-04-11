@@ -1,6 +1,7 @@
 import logging
-from settings import INFO_CHANNEL
+from settings import INFO_CHANNEL, DROPBOX_TOKEN
 from telegram.ext.dispatcher import run_async
+from database import TransferData
 
 import text_for_LaBot
 import pars_check  # used for check_format
@@ -13,6 +14,7 @@ import pars_check  # used for check_format
 #                     filename='LaBot.log')
 
 logger = logging.getLogger(__name__)
+dropb = TransferData(DROPBOX_TOKEN)
 
 @run_async
 def unknown(bot, update):
@@ -49,11 +51,13 @@ def save(bot, update):
         else:
             bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.unsaved_text, parse_mode='Markdown')
         file.download(new_path)
-        bot.send_message(chat_id=update.message.chat_id, text='Файл ' + '<*' + name + '*>' + text_for_LaBot.save_text,
-                         parse_mode='Markdown')
+        if not dropb.upload_file(new_path, "/" + new_path):
+            bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.sth_wrong, parse_mode='Markdown')
+        else:
+            bot.send_message(chat_id=update.message.chat_id, text='Файл ' + '<*' + name + '*>' + text_for_LaBot.save_text,
+                             parse_mode='Markdown')
 
         chat = bot.get_chat(update.message.chat_id)
-        print(f"Пользователь {chat.username}({chat.first_name} {chat.last_name}) загрузил файл { name }")
         bot.send_message(chat_id=INFO_CHANNEL,
                          text=(f"Пользователь {chat.username}({chat.first_name} {chat.last_name}) загрузил файл { name }"))
 

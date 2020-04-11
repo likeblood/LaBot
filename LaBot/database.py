@@ -2,17 +2,11 @@
 #	NOW there is no need to use database
 #
 
-from datetime import datetime
 import logging
 
 
-from pymongo import MongoClient
-from pymongo.collection import ReturnDocument
-from bson.binary import Binary
-
-
 from settings import MONGO_LNK, MONGO_DB
-
+import dropbox
 
 # Enable logging to handle uncaught exceptions
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -20,26 +14,21 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     filename='LaBot.log')
 logger = logging.getLogger(__name__)
 
+# https://stackoverflow.com/questions/23894221/upload-file-to-my-dropbox-from-python-script
+class TransferData:
+    def __init__(self, access_token):
+        self.access_token = access_token
 
-client = MongoClient(MONGO_LNK)
-db = client.labs
+    def upload_file(self, file_from, file_to):
+        """upload a file to Dropbox using API v2
+        """
+        dbx = dropbox.Dropbox(self.access_token)
 
-
-# users_collection = db.users_collection
-# print('users collections are created!')
-
-
-# def create_user_document(user_id, username):
-#     """Creates user document in user collection"""
-#     user_document = {
-#         "user_id": user_id,
-#         "username": username,
-#         "is_tutor": False,
-#         "created_at": datetime.utcnow()
-#     }
-#     users_collection.insert_one(user_document)
-
-
-# def get_user_document(user_id):
-#     """Tries to get user document from user collection; if it fails returns None"""
-#     return users_collection.find_one({"user_id": user_id})
+        try:
+            logger.info(f"Loading {file_from} on Dropbox")
+            with open(file_from, 'rb') as f:
+                dbx.files_upload(f.read(), file_to)
+            return True
+        except Exception:
+            logger.error('Something wrong with Dropbox', exc_info=True)
+            return False
