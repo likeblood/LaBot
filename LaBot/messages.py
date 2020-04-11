@@ -1,4 +1,5 @@
 import logging
+from settings import INFO_CHANNEL
 from telegram.ext.dispatcher import run_async
 
 import text_for_LaBot
@@ -7,10 +8,11 @@ import pars_check  # used for check_format
 
 # logs for LaBot
 # Enable logging to handle uncaught exceptions
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO,
-                    filename='LaBot.log')
+# logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+#                     level=logging.INFO,
+#                     filename='LaBot.log')
 
+logger = logging.getLogger(__name__)
 
 @run_async
 def unknown(bot, update):

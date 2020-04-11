@@ -12,8 +12,8 @@ import customFilters
 from settings import TOKEN
 
 
-def error(bot, update):
-    logger.warning('Update "%s" caused error "%s"', update, bot.error)
+def error(bot, update, error):
+    logger.warning('Update "%s" caused error "%s"', update, error)
 
 # logs for LaBot
 # Enable logging to handle uncaught exceptions
@@ -22,8 +22,10 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 					level=logging.INFO,
 					filename='LaBot.log')
 
+logger = logging.getLogger(__name__)
 
 def main():
+	logger.info("Initializing bot")
 	updater = Updater(token=TOKEN)
 	dp = updater.dispatcher
 
@@ -37,9 +39,12 @@ def main():
 	dp.add_error_handler(error)
 
 	print("\nrunning...\n")
+	logger.info("The bot is enabled")
 
 	updater.start_polling()
 	updater.idle()
+	logger.info("The bot is disabled")
+
 
 if __name__ == '__main__':
 	main()
