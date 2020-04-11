@@ -12,8 +12,8 @@ import customFilters
 from settings import TOKEN
 
 
-def error(bot, update):
-    logger.warning('Update "%s" caused error "%s"', update, bot.error)
+def error(bot, update, error):
+    logger.warning('Update "%s" caused error "%s"', update, error)
 
 # logs for LaBot
 # Enable logging to handle uncaught exceptions
