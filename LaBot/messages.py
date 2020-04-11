@@ -52,9 +52,6 @@ def save(bot, update):
         bot.send_message(chat_id=update.message.chat_id, text='Файл ' + '<*' + name + '*>' + text_for_LaBot.save_text,
                          parse_mode='Markdown')
 
-        bot.send_message(chat_id=INFO_CHANNEL,
-                         text=f'Пользователь @{update.chat.username}({update.chat.username} {chat.last_name}) прислал файл {name}')
-
     except Exception:
         bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.sth_wrong, parse_mode='Markdown')
         logger.error('Something wrong', exc_info=True)
