@@ -13,5 +13,5 @@ It is plannig to scale and develop this bot with several functions:
 3. A possibility to insert this bot at stydy chats. 
 
 ## To-Do
- - [ ] Add integration with Dropbox
- - [x] Add setup file
+ - [x] Add integration with Dropbox
+ - [ ] Add setup file
