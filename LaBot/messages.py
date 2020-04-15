@@ -1,7 +1,7 @@
 import logging
 from settings import INFO_CHANNEL, DROPBOX_TOKEN
 from telegram.ext.dispatcher import run_async
-from database import TransferData
+from database import TransferData, User
 
 import text_for_LaBot
 import pars_check  # used for check_format
@@ -27,7 +27,8 @@ def save(bot, update):
     file = bot.get_file(file_id)
     try:
         name = update.message.document.file_name
-        logger.info(f"Recieved file {name} from chat {update.message.chat_id}")
+        user = User.from_chatid(bot, update.message.chat_id)
+        logger.info(f"Recieved file {name} from {user.full_name}")
         if not (pars_check.check_format(name)):
             bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.unsaved_text, parse_mode='Markdown')
             return None
@@ -57,9 +58,8 @@ def save(bot, update):
             bot.send_message(chat_id=update.message.chat_id, text='Файл ' + '<*' + name + '*>' + text_for_LaBot.save_text,
                              parse_mode='Markdown')
 
-        chat = bot.get_chat(update.message.chat_id)
         bot.send_message(chat_id=INFO_CHANNEL,
-                         text=(f"Пользователь {chat.username}({chat.first_name} {chat.last_name}) загрузил файл { name }"))
+                         text=(f"Пользователь {user.full_name} загрузил файл { name }"))
 
     except Exception:
         bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.sth_wrong, parse_mode='Markdown')
