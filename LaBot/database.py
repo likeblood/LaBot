@@ -3,9 +3,6 @@
 #
 
 import logging
-
-
-from settings import MONGO_LNK, MONGO_DB
 import dropbox
 
 # Enable logging to handle uncaught exceptions
