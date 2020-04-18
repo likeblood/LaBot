@@ -60,7 +60,7 @@ def save(bot, update):
             bot.send_message(chat_id=update.message.chat_id, text='Файл ' + '<*' + name + '*>' + text_for_LaBot.save_text,
                              parse_mode='Markdown')
             bot.send_message(chat_id=INFO_CHANNEL,
-                             text=(f"{user.full_name} загрузил файл { name }"))
+                             text=(f"Пользователь {user.full_name} загрузил файл { name }"))
 
     except Exception:
         bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.sth_wrong, parse_mode='Markdown')
