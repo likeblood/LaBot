@@ -54,12 +54,13 @@ def save(bot, update):
         file.download(new_path)
         if not dropb.upload_file(new_path, "/" + new_path):
             bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.sth_wrong, parse_mode='Markdown')
+            bot.send_message(chat_id=INFO_CHANNEL,
+                                                 text=(f"Не смог загрузить файл { name } от {user.full_name}"))
         else:
             bot.send_message(chat_id=update.message.chat_id, text='Файл ' + '<*' + name + '*>' + text_for_LaBot.save_text,
                              parse_mode='Markdown')
-
-        bot.send_message(chat_id=INFO_CHANNEL,
-                         text=(f"Пользователь {user.full_name} загрузил файл { name }"))
+            bot.send_message(chat_id=INFO_CHANNEL,
+                             text=(f"{user.full_name} загрузил файл { name }"))
 
     except Exception:
         bot.send_message(chat_id=update.message.chat_id, text=text_for_LaBot.sth_wrong, parse_mode='Markdown')

@@ -69,7 +69,7 @@ class TransferData:
         try:
             logger.info(f"Loading {file_from} on Dropbox")
             with open(file_from, 'rb') as f:
-                dbx.files_upload(f.read(), file_to)
+                dbx.files_upload(f.read(), file_to, mode=dropbox.files.WriteMode.overwrite)
             return True
         except Exception:
             logger.error('Something wrong with Dropbox', exc_info=True)
